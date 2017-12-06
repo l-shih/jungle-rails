@@ -5,8 +5,4 @@ class CategoriesController < ApplicationController
     @products = @category.products.order(created_at: :desc)
   end
 
-  def index
-    @categories = Category.all
-  end
-
 end
