@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     
     if @user.save
       session[:user_id] = @user.id
-      redirect_to [:root], notice: 'New user registered!'
+      redirect_to 'index', notice: 'New user registered!'
     else
       render 'new'
     end
@@ -16,7 +16,6 @@ class UsersController < ApplicationController
   end
 
   def index
-    #redirect_to [:root]
     @current_user = User.find(session[:user_id])
   end
 
