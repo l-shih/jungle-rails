@@ -25,6 +25,14 @@
         </dl>
       </div>
     </div>
+  
+  <br>
+
+  <%if @product.reviews == [] %>
+
+    <h4>Looks like there're no reviews here.</h4>
+
+  <%else%>
 
   <div class="panel panel-default items">
     <table class="table table-bordered">
@@ -50,18 +58,28 @@
     </table>
   </div>
 
-  <%= form_for([@product, @review]) do |f| %>
-    <div class="field">
-      <%= f.label :Rating %><br>
-      <%= f.select(:rating, options_for_select([0,1,2,3,4,5]), :selected => params[:option])%><br>
-    </div>
-    <div class="field">
-      <%= f.label :description %><br>
-      <%= f.text_area :description %>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
+  <%end%>
+
+  <% if !current_user %>
+
+  <h4>Please sign in to leave a review</h4>
+
+  <% else %>
+
+    <%= form_for([@product, @review]) do |f| %>
+      <div class="field">
+        <%= f.label :Rating %><br>
+        <%= f.select(:rating, options_for_select([0,1,2,3,4,5]), :selected => params[:option])%><br>
+      </div>
+      <div class="field">
+        <%= f.label :description %><br>
+        <%= f.text_area :description %>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+
   <% end %>
   </article>
 </section>
