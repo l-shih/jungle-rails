@@ -30,14 +30,16 @@
     <table class="table table-bordered">
       <thead>
         <tr>
+          <th>Review Date</th>
           <th>Rating</th>
           <th>Description</th>
           <th>User</th>
         </tr>
       </thead>
       <tbody>
-        <% @product.reviews.each do |review| %>
+        <% @product.reviews.reverse_each do |review| %>
         <tr>
+          <td><%= review.created_at.in_time_zone('Pacific Time (US & Canada)').to_formatted_s(:short)  %></td>        
           <td><%= review.rating %></td>
           <td><%= review.description %></td>
           <td><%= review.user.first_name %></td>
