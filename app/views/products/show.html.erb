@@ -26,6 +26,45 @@
       </div>
     </div>
 
-  </article>
+  <div class="panel panel-default items">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Rating</th>
+          <th>Description</th>
+          <th>User</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @product.reviews.each do |review| %>
+        <tr>
+          <td><%= review.rating %></td>
+          <td><%= review.description %></td>
+          <td><%= review.user.first_name %></td>
+        </tr>
+       <% end %>
+      </tbody>
+      <tfoot>
+    </table>
+  </div>
 
+  <%= form_for([@product, @review]) do |f| %>
+    <div class="field">
+      <%= f.label :Rating %><br>
+      <%= f.select(:rating, options_for_select([0,1,2,3,4,5]), :selected => params[:option])%><br>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br>
+      <%= f.text_area :description %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+  </article>
 </section>
+
+
+
+
+
