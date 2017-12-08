@@ -1,3 +1,5 @@
+<p id="notice"><%= notice %></p>
+
 <section class="products-show">
 
   <header class="page-header">
@@ -47,7 +49,11 @@
       <tbody>
         <% @product.reviews.reverse_each do |review| %>
         <tr>
-          <td><%= review.created_at.in_time_zone('Pacific Time (US & Canada)').to_formatted_s(:short)  %></td>        
+          <td><%= review.created_at.in_time_zone('Pacific Time (US & Canada)').to_formatted_s(:short)  %>
+          <% if review.user == current_user %>
+          <%= link_to 'delete', review,  method: :delete, data: { confirm: 'Are you sure?' }%>
+          <% end %>
+          </td>        
           <td><%= review.rating %></td>
           <td><%= review.description %></td>
           <td><%= review.user.first_name %></td>
@@ -69,7 +75,7 @@
     <%= form_for([@product, @review]) do |f| %>
       <div class="field">
         <%= f.label :Rating %><br>
-        <%= f.select(:rating, options_for_select([0,1,2,3,4,5]), :selected => params[:option])%><br>
+        <%= f.select(:rating, options_for_select(['-',0,1,2,3,4,5]), :selected => params[:option])%><br>
       </div>
       <div class="field">
         <%= f.label :description %><br>
