@@ -1,0 +1,14 @@
+Hi, <%= @email %>
+===============================================
+
+This email confirms that your order #<%= @order.id %> has been successfully recevied.<br>
+
+Order Summary:
+
+<% @order.line_items.each do |item| %>
+  <%= item.product.name %>
+  <%= item.product.description %>
+<% end %>
+
+Your total:
+<%= @order.total %>

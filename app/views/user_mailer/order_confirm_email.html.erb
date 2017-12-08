@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi, <%= @email %></h1>
+    <p>
+      This email confirms that your order #<%= @order.id %> has been successfully recevied.<br>
+    </p>
+
+    <h2>Order Summary:</h2>
+    </p>
+      <% @order.line_items.each do |item| %>
+        <p>
+          <%= item.product.name %>
+        </p>
+        <p>
+          <%= item.product.description %>
+        </p>
+      <% end %>
+    <p>
+      Your total:
+      <%= @order.total %>
+    </p>
+
+</html>
