@@ -5,7 +5,10 @@
   </header>
 
   <div class="order-summary jumbotron">
-    <h4>Thank you for your order! You'll receive a confirmation email at <%= @order.email%></h4>
+    <h4>Thank you for your order!<h4>
+    <% if current_user %>
+    <h4> You'll receive a confirmation email at <%= current_user.email %></h4>
+    <%end%>
   </div>
 
    <div class="panel panel-default items">
@@ -29,13 +32,11 @@
             TOTAL:
           </th>
           <th>
-            <%= @order.total %>
+            <%= humanized_money_with_symbol(@order.total) %>
           </th>
         </tr>
       </tfoot>
     </table>
   </div>
-
-  <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
 
 </section>

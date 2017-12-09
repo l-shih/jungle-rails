@@ -8,15 +8,11 @@ class UsersController < ApplicationController
     
     if @user.save
       session[:user_id] = @user.id
-      redirect_to [:root], notice: 'New user registered!'
+      redirect_to [:root]
     else
       render 'new'
     end
 
-  end
-
-  def index
-    @current_user = User.find(session[:user_id])
   end
 
   private

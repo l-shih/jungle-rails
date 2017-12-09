@@ -51,7 +51,7 @@
         <tr>
           <td><%= review.created_at.in_time_zone('Pacific Time (US & Canada)').to_formatted_s(:short)  %>
           <% if review.user == current_user %>
-          <%= link_to 'delete', review,  method: :delete, data: { confirm: 'Are you sure?' }%>
+          <%= link_to 'Delete Review', review,  method: :delete, data: { confirm: 'Are you sure?' }%>
           <% end %>
           </td>        
           <td><%= review.rating %></td>
@@ -81,8 +81,9 @@
         <%= f.label :description %><br>
         <%= f.text_area :description %>
       </div>
+      <br>
       <div class="actions">
-        <%= f.submit %>
+        <%= f.submit class: 'btn btn-primary'%>
       </div>
     <% end %>
 
